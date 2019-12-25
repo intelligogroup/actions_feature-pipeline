@@ -1,0 +1,15 @@
+name: Feature-pipeline
+description: Feature pipeline for intelligogroup
+inputs:
+  github_token:
+    description: GitHub token secret
+    required: true
+  email_address:
+    description: Email address for git user
+    required: true
+  username:
+    description: Username for git user
+    required: true
+runs:
+  using: node12
+  main: bin/index.js
