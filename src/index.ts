@@ -12,8 +12,8 @@ import rebaseMaster from './rebase-master';
     const { sha, message } = await getLastCommit(ref);
     console.log(`latest commit message: ${message}`);
 
-    if (!message.includes('FEATURE:')) {
-        console.log('latest commit is not a ready feature. To trigger this action use the string "FEATURE:" in the commit message');
+    if (!message.includes('feature/')) {
+        console.log('latest commit is not a ready feature. To trigger this action use the string "feature/" in the commit message');
         return;
     }
 
