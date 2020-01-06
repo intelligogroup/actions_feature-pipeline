@@ -10,6 +10,8 @@ export default async () => {
 
     const content = await promises.readdir(process.cwd());
 
+    console.dir(content)
+
     await git.init();
 
     await git.addConfig('user.name', process.env.INPUT_USERNAME);
