@@ -10,6 +10,8 @@ export default async () => {
 
     const content = await promises.readdir(process.cwd());
 
+    console.dir('CONTENT:', content)
+
     await git.init();
 
     await git.addConfig('user.name', process.env.INPUT_USERNAME);
@@ -37,8 +39,6 @@ async function rebaseOn(git: SimpleGit, branch: string) {
         await git.checkout(branch);
 
         await git.rebase(['origin/master']);
-
-        await git.commit(`test-commit: ${Date.now()}`);
 
         await git.push();
 
