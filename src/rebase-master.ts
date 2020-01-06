@@ -10,7 +10,7 @@ export default async () => {
 
     const content = await promises.readdir(process.cwd());
 
-    console.dir(content)
+    console.dir('CONTENT:', content)
 
     await git.init();
 
