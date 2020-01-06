@@ -40,8 +40,6 @@ async function rebaseOn(git: SimpleGit, branch: string) {
 
         await git.rebase(['origin/master']);
 
-        await git.commit(`test-commit: ${Date.now()}`);
-
         await git.push();
 
     } catch (error) {

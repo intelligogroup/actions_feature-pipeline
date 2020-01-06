@@ -29,6 +29,19 @@
             ],
             "outputCapture": "std",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "file",
+            "program": "${file}",
+            "sourceMaps": true,
+            "trace": "all",
+            "outFiles": [
+                "${workspaceRoot}/dist/**/*.js"
+            ],
+            "outputCapture": "std",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
