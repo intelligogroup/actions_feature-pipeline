@@ -1,5 +1,7 @@
 import octokit from "./octokit"
-import { owner, repo, sourceBranch } from "./util"
+import contextUtil from "./context-util"
+
+const { owner, repo, sourceBranch } = contextUtil;
 
 export default async () => {
     const { data: [{ number }] } = await octokit.pulls.list({

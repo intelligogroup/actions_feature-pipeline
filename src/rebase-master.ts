@@ -1,26 +1,10 @@
 
-import simpleGit, { SimpleGit } from 'simple-git/promise';
-import { sourceBranch } from './util';
-import repoUrl from './repo-url';
-import { promises } from 'fs';
+import { SimpleGit } from 'simple-git/promise';
+import contextUtil from './context-util';
 
-export default async () => {
+const { sourceBranch } = contextUtil;
 
-    const git = simpleGit();
-
-    const content = await promises.readdir(process.cwd());
-
-    console.log('CONTENT:', content);
-
-    await git.init();
-
-    await git.addConfig('user.name', process.env.INPUT_USERNAME);
-    
-    await git.addConfig('user.email', process.env.INPUT_EMAIL_ADDRESS);
-
-    await git.remote(['add', 'origin', repoUrl]);
-
-    await git.fetch('origin', 'master');
+export default async (git: SimpleGit) => {
 
     await rebaseOn(git, 'stage');
 
@@ -34,12 +18,10 @@ async function rebaseOn(git: SimpleGit, branch: string) {
 
     try {
 
-        await git.fetch('origin', branch);
-
         await git.checkout(branch);
 
-        await git.rebase(['origin/master']);
-
+        await git.rebase(['master']);
+        
         await git.push();
 
     } catch (error) {

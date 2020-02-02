@@ -1,18 +1,5 @@
-import simpleGit from 'simple-git/promise';
+import path from 'path';
+const workingDir = process.cwd();
+process.env.REPO = path.basename(workingDir);
 
-
-const clone = async () => {
-
-    const git = simpleGit();
-
-    const repositoryUrl = `https://github.com/${encodeURIComponent(
-        'intelligogroup'
-    )}/${encodeURIComponent(
-        'test-repo'
-    )}`;
-
-    await git.clone(repositoryUrl);
-
-}
-
-clone()
+import './index';

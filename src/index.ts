@@ -1,15 +1,17 @@
-import { ref } from './util';
+import contextUtil from './context-util';
 import createPullRequest from './create-pull-request';
-import mergePullRequest from './merge-pull-request';
+// import mergePullRequest from './merge-pull-request';
 import getLastCommit from './get-last-commit';
 import compareToMaster from './compare-to-master';
-import getLastPullRequestToStage from './get-last-pull-request-to-stage';
+// import getLastPullRequestToStage from './get-last-pull-request-to-stage';
 import rebaseMaster from './rebase-master';
+import setupRepoFiles from './setup-repo-files';
+import mergeTo from './merge-to';
 
 
 (async () => {
 
-    const { sha, message } = await getLastCommit(ref);
+    const { sha, message } = await getLastCommit(contextUtil.ref);
     console.log(`latest commit message: ${message}`);
 
     if (!message.includes('feature/')) {
@@ -36,17 +38,21 @@ import rebaseMaster from './rebase-master';
         return;
     }
 
-    await rebaseMaster();
+    const git = await setupRepoFiles();
+
+    await rebaseMaster(git);
 
     await createPullRequest('master');
 
-    let pull_number = await createPullRequest('stage');
+    await createPullRequest('stage');
 
-    if (!pull_number) {
-        pull_number = await getLastPullRequestToStage();
-    }
+    await mergeTo('stage', git);
 
-    await mergePullRequest(pull_number);
+    // if (!pull_number) {
+    //     pull_number = await getLastPullRequestToStage();
+    // }
+
+    // await mergePullRequest(pull_number);
 
 })()
 
