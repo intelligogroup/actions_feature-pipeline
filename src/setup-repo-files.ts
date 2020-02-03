@@ -1,5 +1,7 @@
 import simpleGit from 'simple-git/promise';
 import repoUrl from './repo-url';
+import fse from 'fs-extra';
+
 
 export default async () => {
     const gitDir = process.env.LOCAL_DEVELOPMENT_GIT_DIRECTORY || process.cwd();

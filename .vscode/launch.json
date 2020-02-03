@@ -8,19 +8,6 @@
             "type": "node",
             "request": "launch",
             "name": "Start",
-            "program": "${workspaceRoot}\\src\\index.ts",
-            "sourceMaps": true,
-            "trace": "all",
-            "outFiles": [
-                "${workspaceRoot}/bin/**/*.js"
-            ],
-            "outputCapture": "std",
-            "envFile": "${workspaceFolder}/.env"
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "debug",
             "program": "${workspaceRoot}\\src\\debug.ts",
             "sourceMaps": true,
             "trace": "all",

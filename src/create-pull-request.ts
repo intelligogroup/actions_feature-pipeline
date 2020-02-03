@@ -11,7 +11,7 @@ export default async (base: 'master' | 'stage') => {
         const { data: { number } } = await octokit.pulls.create({
             owner,
             repo,
-            title: `Pulling ${sourceBranch} into ${base}`,
+            title: `💾Pulling ${sourceBranch} into ${base}💾`,
             body: ':clap: *An automated PR*',
             head: sourceBranch,
             base
