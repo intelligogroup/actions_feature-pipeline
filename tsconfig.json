@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
-        "target": "ES2020",
+        "target": "es2015",
         "module": "commonjs",
+        "moduleResolution": "Node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "removeComments": false,

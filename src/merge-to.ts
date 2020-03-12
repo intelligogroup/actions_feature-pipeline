@@ -4,7 +4,8 @@ import contextUtil from "./context-util";
 const { sourceBranch } = contextUtil;
 
 export default async (branchName: string, git: SimpleGit) => {
-    try {
+try {
+        await git.reset('hard');
         await git.checkout(branchName);
         await git.pull();
         await git.merge(['-Xignore-all-space', sourceBranch]);

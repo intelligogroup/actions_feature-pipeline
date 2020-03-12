@@ -17,7 +17,8 @@ export default async (git: SimpleGit) => {
 async function rebaseOn(git: SimpleGit, branch: string) {
 
     try {
-
+        await git.reset('hard');
+        
         await git.checkout(branch);
 
         await git.rebase(['master']);
