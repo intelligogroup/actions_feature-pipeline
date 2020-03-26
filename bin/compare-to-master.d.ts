@@ -1,2 +1,2 @@
-declare const _default: () => Promise<import("@octokit/rest").Octokit.ReposCompareCommitsResponseFilesItem[]>;
+declare const _default;
 export default _default;
