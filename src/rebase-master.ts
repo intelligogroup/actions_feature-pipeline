@@ -1,6 +1,7 @@
 
 import { SimpleGit } from 'simple-git/promise';
 import contextUtil from './context-util';
+import log from './log';
 
 const { sourceBranch } = contextUtil;
 
@@ -25,6 +26,8 @@ export default async (git: SimpleGit) => {
 
 async function rebaseOn(git: SimpleGit, branch: string) {
 
+    log(`🐠 Try rebase master on ${branch}...`);
+
     try {
 
         await git.reset('hard');
@@ -34,6 +37,8 @@ async function rebaseOn(git: SimpleGit, branch: string) {
         await git.rebase(['master']);
 
         await git.push('origin', 'master', { '--force': null });
+
+        log(`✔ Successfully rebase master on ${branch}❕`);
 
     } catch (error) {
 
