@@ -6,30 +6,40 @@ const { sourceBranch } = contextUtil;
 
 export default async (git: SimpleGit) => {
 
-    await rebaseOn(git, 'stage');
+    const { current } = await git.branch([]);
 
-    await rebaseOn(git, sourceBranch);
+    try {
 
-    await git.checkout(sourceBranch);
+        await rebaseOn(git, 'stage');
+
+        await rebaseOn(git, sourceBranch);
+
+    } finally {
+
+        await git.reset('hard');
+
+        await git.checkout(current);
+    }
 
 }
 
 async function rebaseOn(git: SimpleGit, branch: string) {
 
     try {
+
         await git.reset('hard');
-        
+
         await git.checkout(branch);
 
         await git.rebase(['master']);
-        
-        await git.push();
+
+        await git.push('origin', 'master', { '--force': null });
 
     } catch (error) {
 
         console.log(`REBASE MASTER ON ${branch} failed. aborting`);
 
-        try { await git.rebase(['--abort']); } catch (e) { console.log('rebase --abort returned an error'); }
+        try { await git.rebase(['--abort']); } catch (e) { }
     }
 
 }

@@ -1,6 +1,5 @@
 import simpleGit from 'simple-git/promise';
 import repoUrl from './repo-url';
-import fse from 'fs-extra';
 
 
 export default async () => {

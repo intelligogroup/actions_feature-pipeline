@@ -22,9 +22,6 @@ import mergeTo from './merge-to';
 
     const { sha: masterLastCommitSha } = await getLastCommit('refs/heads/master');
 
-    console.log(`last commit sha: ${sha}`);
-    console.log(`master last commit sha: ${masterLastCommitSha}`);
-
     if (sha === masterLastCommitSha) {
         console.log('Source and master branches are the same, no point in pull request!!');
         return;

@@ -5,7 +5,6 @@ const { sourceBranch } = contextUtil;
 
 export default async (branchName: string, git: SimpleGit) => {
 try {
-        await git.reset('hard');
         await git.checkout(branchName);
         await git.pull();
         await git.merge(['-Xignore-all-space', sourceBranch]);
@@ -13,5 +12,8 @@ try {
     } catch (error) {
         console.log(`💥Failed to merge ${sourceBranch} into ${branchName}💥`);
         await git.merge(['--abort'])
+    } finally {
+        git.reset('hard');
+        
     }
 }
