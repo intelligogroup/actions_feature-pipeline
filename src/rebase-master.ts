@@ -11,8 +11,6 @@ export default async (git: SimpleGit) => {
 
     try {
 
-        await rebaseOn(git, 'stage');
-
         await rebaseOn(git, sourceBranch);
 
     } finally {
@@ -36,7 +34,7 @@ async function rebaseOn(git: SimpleGit, branch: string) {
 
         await git.rebase(['master']);
 
-        await git.push('origin', 'master', { '--force': null });
+        await git.push('origin', branch, { '--force': null });
 
         log(`✔ Successfully rebase master on ${branch}❕`);
 
