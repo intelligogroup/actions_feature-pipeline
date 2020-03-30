@@ -37,7 +37,7 @@ import mergeTo from './merge-to';
 
     const git = await setupRepoFiles();
 
-    await rebaseMaster(git);
+    // await rebaseMaster(git);
 
     await createPullRequest('master');
 
