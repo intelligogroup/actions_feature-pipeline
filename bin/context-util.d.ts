@@ -1,5 +1,6 @@
 declare const _default: {
     sourceBranch: string;
+    sourceBranchNameOld: string;
     repo: string;
     sha: string;
     owner: string;
