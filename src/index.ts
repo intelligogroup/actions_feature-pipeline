@@ -24,22 +24,26 @@ import mergeTo from './merge-to';
         console.log('Source and master branches are the same, no point in pull request!!');
         return;
     }
-
+    console.log('before compareToMaster')
     const files = await compareToMaster();
 
     if (!files.length) {
         console.log('No file changes detected between source and master branches');
         return;
     }
+    console.log('before setupRepoFiles')
     const git = await setupRepoFiles();
     // await rebaseMaster(git);
 
+    console.log('before createPullRequest master')
     await createPullRequest('master');
 
+    console.log('before createPullRequest stage')
     await createPullRequest('stage');
 
+    console.log('before mergeTo')
     await mergeTo('stage', git);
-
+    console.log('done')
     // if (!pull_number) {
     //     pull_number = await getLastPullRequestToStage();
     // }
@@ -49,6 +53,7 @@ import mergeTo from './merge-to';
 })()
 
     .catch(error => {
+        console.log('!!!!!')
         console.error(error);
         process.exit(1);
     });
