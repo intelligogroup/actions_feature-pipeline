@@ -12,10 +12,6 @@ if (process.env.IS_DEVELOPMENT_LOCAL_MODE) {
     ({ repo: { repo, owner }, ref, sha } = context);
 }
 
-
-
-const sourceBranchNameOld = ref.split('/')[2];
-
 const splittedRefArray = ref.split('refs/heads/');
 const sourceBranchName = splittedRefArray[splittedRefArray.length - 1];
 
@@ -26,7 +22,6 @@ if (!sourceBranchName || ['master', 'stage'].includes(sourceBranchName)) {
 
 export default {
     sourceBranch: sourceBranchName,
-    sourceBranchNameOld,
     repo,
     sha,
     owner,

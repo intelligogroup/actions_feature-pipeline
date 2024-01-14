@@ -39,7 +39,7 @@ async function rebaseOn(git: SimpleGit, branch: string) {
         log(`✔ Successfully rebase master on ${branch}❕`);
 
     } catch (error) {
-        console.log('11111')
+
         console.log(`REBASE MASTER ON ${branch} failed. aborting`);
 
         try { await git.rebase(['--abort']); } catch (e) { }

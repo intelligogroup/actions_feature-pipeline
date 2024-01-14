@@ -20,11 +20,10 @@ export default async (base: 'master' | 'stage') => {
         return number;
 
     } catch (error) {
-        console.log('create pull request error', JSON.stringify(error));
-        const alreadyExistError = error?.errors?.some(({ message }) => message?.includes('already exist'));
+        const errors = error?.errors ?? error?.response.data.errors;
+        const alreadyExistError = errors.some(({ message }) => message?.includes('already exist'));
 
         if (!alreadyExistError) {
-            console.log('inside !alreadyExistError')
             throw error;
         }
 
