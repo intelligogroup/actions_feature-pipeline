@@ -24,6 +24,7 @@ export default async (base: 'master' | 'stage') => {
         const alreadyExistError = error?.errors?.some(({ message }) => message?.includes('already exist'));
 
         if (!alreadyExistError) {
+            console.log('inside !alreadyExistError')
             throw error;
         }
 
